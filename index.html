@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiHal Nivesh</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: "Georgia", serif;
+    background: linear-gradient(180deg, #fde2ea, #fff6fa);
+    overflow-x: hidden;
+}
+
+/* Butterflies */
+body::before {
+    content: "🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋";
+    position: fixed;
+    font-size: 48px;
+    opacity: 0.1;
+    animation: float 16s ease-in-out infinite;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    text-align: center;
+    pointer-events: none;
+    z-index: 0;
+    line-height: 1.8;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(50px); }
+    100% { transform: translateY(0); }
+}
+
+/* Lock Screen */
+.lock-screen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, #fde2ea, #fff6fa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.lock-box {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 22px;
+    width: 90%;
+    max-width: 360px;
+    text-align: center;
+    box-shadow: 0 18px 45px rgba(214,105,150,.25);
+}
+
+.lock-box h2 { color:#b23a6f; }
+.lock-box input {
+    width:100%;
+    padding:12px;
+    border-radius:12px;
+    border:1px solid #e5a0bb;
+    margin-bottom:14px;
+}
+.lock-box button {
+    background:#b23a6f;
+    color:#fff;
+    border:none;
+    padding:12px;
+    width:100%;
+    border-radius:12px;
+    font-size:16px;
+}
+.error { display:none; color:#b23a6f; }
+
+/* Main */
+.container {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 30px 20px 90px;
+    display: none;
+    position: relative;
+    z-index: 1;
+}
+
+.card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 42px 26px;
+    text-align: center;
+    box-shadow: 0 18px 45px rgba(214,105,150,.25);
+    animation: fadeUp 1.5s ease;
+}
+
+@keyframes fadeUp {
+    from { opacity:0; transform:translateY(25px); }
+    to { opacity:1; transform:translateY(0); }
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    color: #b23a6f;
+    margin-bottom: 8px;
+}
+
+.birthday {
+    font-size: 16px;
+    color: #8a4b64;
+    margin-bottom: 24px;
+    font-style: italic;
+}
+
+/* Photo */
+.photo-frame {
+    margin: 10px auto 30px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+.photo-frame img {
+    width: 100%;
+    display: block;
+}
+
+/* Sections */
+.divider {
+    width: 64px;
+    height: 2px;
+    background: #e5a0bb;
+    margin: 28px auto;
+}
+
+.amount {
+    font-size: 28px;
+    font-weight: bold;
+    color: #5a2a3c;
+}
+
+.timeline {
+    margin-top: 18px;
+    font-size: 17px;
+    color: #7a3e57;
+}
+
+.details {
+    margin-top: 22px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #444;
+}
+
+.note {
+    margin-top: 28px;
+    padding: 22px;
+    background: #fff0f6;
+    border-radius: 14px;
+    font-size: 15px;
+    color: #5c2f41;
+    line-height: 1.7;
+}
+
+.footer {
+    margin-top: 26px;
+    font-size: 15px;
+    color: #8a4b64;
+    font-style: italic;
+}
+
+/* Hearts */
+.heart {
+    position: fixed;
+    font-size: 36px;
+    opacity: 0;
+    animation: heartFloat 2.5s ease forwards;
+    z-index: 999;
+}
+
+@keyframes heartFloat {
+    0% { transform:translateY(0) scale(.6); opacity:0; }
+    20% { opacity:1; }
+    100% { transform:translateY(-120px) scale(1.2); opacity:0; }
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 12px;
+    top: -10px;
+    animation: confettiFall 4s linear forwards;
+    z-index: 999;
+    opacity: 0.9;
+}
+
+@keyframes confettiFall {
+    0% { transform: translateY(0) rotate(0deg); opacity:1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="lock-screen" id="lockScreen">
+    <div class="lock-box">
+        <h2>Private</h2>
+        <p>Enter the password</p>
+        <input type="password" id="password">
+        <button onclick="unlock()">Unlock</button>
+        <div class="error" id="error">Incorrect password</div>
+    </div>
+</div>
+
+<div class="container" id="content">
+    <div class="card" onclick="showHeart()">
+
+        <h1>DiHal Nivesh</h1>
+        <div class="birthday">Happy 23rd Birthday baby girl 🐥</div>
+
+        <div class="photo-frame">
+            <img src="us.jpg" alt="Us">
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="amount">₹1,00,000</div>
+
+        <div class="timeline"><strong>Today</strong> ~ <strong>Forever</strong></div>
+
+        <div class="details">
+            Started with intention.<br>
+            Continued with patience.<br>
+            Built with belief.
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="note">
+            <strong>Why “DiHal”?</strong><br><br>
+            “Di” from <em>Disha</em> — direction and clarity.<br>
+            “Hal” from <em>Kushal</em> — stability and strength.<br><br>
+            DiHal marks the phase where direction meets commitment.<br>
+            I LOVE YOU BABY GIRL ♥ 
+        </div>
+
+        <div class="footer">
+            “Tum mile toh jaadu cha gaya,<br>
+            Tum mile toh jeena aa gaya,<br>
+            Tum mile toh maine paaya hai khuda 🌹✨”
+        </div>
+
+    </div>
+</div>
+
+<script>
+function unlock() {
+    if (document.getElementById("password").value === "caramelcoffee") {
+        lockScreen.style.display = "none";
+        content.style.display = "block";
+        launchConfetti();
+    } else {
+        document.getElementById("error").style.display = "block";
+    }
+}
+
+function showHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random()*80 + 10 + "%";
+    heart.style.bottom = "20px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 2500);
+}
+
+function launchConfetti() {
+    const colors = ["#f7a1c4", "#fbd0e3", "#f5c16c", "#e89bb5"];
+    for (let i = 0; i < 80; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDuration = (Math.random() * 2 + 3) + "s";
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+    }
+}
+</script>
+
+</body>
+</html>
