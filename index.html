@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DiHal Fund</title>
+<title>Di-Hal Fund</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
 
@@ -13,30 +13,30 @@ body {
     font-family: "Georgia", serif;
     background: linear-gradient(180deg, #fde2ea, #fff6fa);
     overflow-x: hidden;
-    position: relative;
 }
 
-/* FULL BACKGROUND BUTTERFLIES */
-body::before {
-    content: "🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋
-              🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋";
+/* 🦋 BUTTERFLY BACKGROUND */
+.butterfly-bg {
     position: fixed;
     inset: 0;
-    font-size: 42px;
-    opacity: 0.12;
-    pointer-events: none;
     z-index: 0;
-    line-height: 2.2;
-    animation: drift 30s linear infinite;
+    pointer-events: none;
 }
 
-@keyframes drift {
-    0%   { transform: translateY(0); }
-    50%  { transform: translateY(60px); }
+.butterfly {
+    position: absolute;
+    font-size: 34px;
+    opacity: 0.15;
+    animation: floatButterfly 18s ease-in-out infinite;
+}
+
+@keyframes floatButterfly {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(60px); }
     100% { transform: translateY(0); }
 }
 
-/* LOCK SCREEN */
+/* 🔐 LOCK SCREEN */
 .lock-screen {
     position: fixed;
     inset: 0;
@@ -76,7 +76,7 @@ body::before {
 }
 .error { display:none; color:#b23a6f; }
 
-/* MAIN CONTENT */
+/* 📱 MAIN CONTENT */
 .container {
     max-width: 420px;
     margin: 0 auto;
@@ -114,7 +114,7 @@ h1 {
     font-style: italic;
 }
 
-/* PHOTO */
+/* 🖼️ PHOTO */
 .photo-frame {
     margin: 10px auto 30px;
     border-radius: 18px;
@@ -126,7 +126,7 @@ h1 {
     display: block;
 }
 
-/* SECTIONS */
+/* ✨ SECTIONS */
 .divider {
     width: 64px;
     height: 2px;
@@ -134,14 +134,8 @@ h1 {
     margin: 28px auto;
 }
 
-.amount {
-    font-size: 28px;
-    font-weight: bold;
-    color: #5a2a3c;
-}
-
 .timeline {
-    margin-top: 18px;
+    margin-top: 10px;
     font-size: 17px;
     color: #7a3e57;
 }
@@ -170,7 +164,7 @@ h1 {
     font-style: italic;
 }
 
-/* HEARTS */
+/* 💗 HEARTS */
 .heart {
     position: fixed;
     font-size: 36px;
@@ -185,7 +179,7 @@ h1 {
     100% { transform:translateY(-120px) scale(1.2); opacity:0; }
 }
 
-/* CONFETTI */
+/* 🎉 CONFETTI */
 .confetti {
     position: fixed;
     width: 8px;
@@ -193,7 +187,6 @@ h1 {
     top: -10px;
     animation: confettiFall 4s linear forwards;
     z-index: 999;
-    opacity: 0.9;
 }
 
 @keyframes confettiFall {
@@ -205,7 +198,10 @@ h1 {
 
 <body>
 
-<!-- LOCK -->
+<!-- 🦋 BACKGROUND -->
+<div class="butterfly-bg" id="butterflyBg"></div>
+
+<!-- 🔐 LOCK -->
 <div class="lock-screen" id="lockScreen">
     <div class="lock-box">
         <h2>Private</h2>
@@ -216,11 +212,11 @@ h1 {
     </div>
 </div>
 
-<!-- CONTENT -->
+<!-- 💗 CONTENT -->
 <div class="container" id="content">
     <div class="card" onclick="showHeart()">
 
-        <h1>DiHal Fund</h1>
+        <h1>Di-Hal Fund</h1>
         <div class="birthday">Happy 23rd Birthday baby girl 🐥</div>
 
         <div class="photo-frame">
@@ -228,8 +224,6 @@ h1 {
         </div>
 
         <div class="divider"></div>
-
-        <div class="amount">₹1,00,000</div>
 
         <div class="timeline"><strong>Today</strong> ~ <strong>Forever</strong></div>
 
@@ -242,10 +236,10 @@ h1 {
         <div class="divider"></div>
 
         <div class="note">
-            <strong>Why “DiHal”?</strong><br><br>
+            <strong>Why “Di-Hal”?</strong><br><br>
             “Di” from <em>Disha</em> — direction and clarity.<br>
             “Hal” from <em>Kushal</em> — stability and strength.<br><br>
-            DiHal marks the phase where direction met commitment.<br>
+            Di-Hal marks the phase where direction met commitment.<br>
             Calm. Intentional. Unrushed.
         </div>
 
@@ -259,6 +253,26 @@ h1 {
 </div>
 
 <script>
+function generateButterflies() {
+    const bg = document.getElementById("butterflyBg");
+    const cols = Math.ceil(window.innerWidth / 60);
+    const rows = Math.ceil(window.innerHeight / 60);
+
+    for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+            const b = document.createElement("div");
+            b.className = "butterfly";
+            b.innerHTML = "🦋";
+            b.style.left = (x * 60 + Math.random() * 20) + "px";
+            b.style.top = (y * 60 + Math.random() * 20) + "px";
+            b.style.animationDelay = Math.random() * 5 + "s";
+            bg.appendChild(b);
+        }
+    }
+}
+
+window.addEventListener("load", generateButterflies);
+
 function unlock() {
     if (document.getElementById("password").value === "caramelcoffee") {
         lockScreen.style.display = "none";
