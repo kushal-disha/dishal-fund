@@ -13,33 +13,21 @@ body {
     font-family: "Georgia", serif;
     background: linear-gradient(180deg, #fde2ea, #fff6fa);
     overflow-x: hidden;
+    position: relative;
 }
 
-/* Butterflies */
+/* FULL BACKGROUND BUTTERFLIES */
 body::before {
-    content: "🦋";
+    content: "🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋
+              🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋";
     position: fixed;
     inset: 0;
-    background-image:
-        repeating-linear-gradient(
-            45deg,
-            transparent 0px,
-            transparent 80px
-        );
     font-size: 42px;
     opacity: 0.12;
     pointer-events: none;
     z-index: 0;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    padding: 20px;
+    line-height: 2.2;
     animation: drift 30s linear infinite;
-}
-
-body::before {
-    content: "🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 
-              🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋";
 }
 
 @keyframes drift {
@@ -48,13 +36,7 @@ body::before {
     100% { transform: translateY(0); }
 }
 
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(50px); }
-    100% { transform: translateY(0); }
-}
-
-/* Lock Screen */
+/* LOCK SCREEN */
 .lock-screen {
     position: fixed;
     inset: 0;
@@ -94,7 +76,7 @@ body::before {
 }
 .error { display:none; color:#b23a6f; }
 
-/* Main */
+/* MAIN CONTENT */
 .container {
     max-width: 420px;
     margin: 0 auto;
@@ -132,7 +114,7 @@ h1 {
     font-style: italic;
 }
 
-/* Photo */
+/* PHOTO */
 .photo-frame {
     margin: 10px auto 30px;
     border-radius: 18px;
@@ -144,7 +126,7 @@ h1 {
     display: block;
 }
 
-/* Sections */
+/* SECTIONS */
 .divider {
     width: 64px;
     height: 2px;
@@ -188,7 +170,7 @@ h1 {
     font-style: italic;
 }
 
-/* Hearts */
+/* HEARTS */
 .heart {
     position: fixed;
     font-size: 36px;
@@ -203,7 +185,7 @@ h1 {
     100% { transform:translateY(-120px) scale(1.2); opacity:0; }
 }
 
-/* Confetti */
+/* CONFETTI */
 .confetti {
     position: fixed;
     width: 8px;
@@ -223,6 +205,7 @@ h1 {
 
 <body>
 
+<!-- LOCK -->
 <div class="lock-screen" id="lockScreen">
     <div class="lock-box">
         <h2>Private</h2>
@@ -233,6 +216,7 @@ h1 {
     </div>
 </div>
 
+<!-- CONTENT -->
 <div class="container" id="content">
     <div class="card" onclick="showHeart()">
 
@@ -245,12 +229,14 @@ h1 {
 
         <div class="divider"></div>
 
+        <div class="amount">₹1,00,000</div>
+
         <div class="timeline"><strong>Today</strong> ~ <strong>Forever</strong></div>
 
         <div class="details">
             Started with intention.<br>
             Continued with patience.<br>
-            Built with commitment.
+            Built with belief.
         </div>
 
         <div class="divider"></div>
@@ -259,8 +245,8 @@ h1 {
             <strong>Why “DiHal”?</strong><br><br>
             “Di” from <em>Disha</em> — direction and clarity.<br>
             “Hal” from <em>Kushal</em> — stability and strength.<br><br>
-            DiHal marks the phase where direction meets commitment.<br>
-            I LOVE YOU BABY GIRL ♥ 
+            DiHal marks the phase where direction met commitment.<br>
+            Calm. Intentional. Unrushed.
         </div>
 
         <div class="footer">
@@ -309,5 +295,3 @@ function launchConfetti() {
 
 </body>
 </html>
-
-
