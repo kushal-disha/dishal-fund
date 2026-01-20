@@ -1,1 +1,1 @@
-# dihal-fund
+# KuDi-fund
