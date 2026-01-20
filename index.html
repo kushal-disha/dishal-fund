@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KuDi Fund</title>
+<title>Dishaal Fund</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 body {
@@ -96,14 +96,12 @@ body {
 
 /* ✨ TITLE */
 h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 40px;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-    background: linear-gradient(90deg, #b23a6f, #e26a9c);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-family: 'Great Vibes', cursive;
+    font-size: 54px;
+    margin-bottom: 10px;
+    color: #b23a6f;
 }
+
 .birthday {
     font-size: 16px;
     color: #8a4b64;
@@ -129,10 +127,12 @@ h1 {
     background: #e5a0bb;
     margin: 28px auto;
 }
+
 .timeline {
     font-size: 17px;
     color: #7a3e57;
 }
+
 .details {
     margin-top: 22px;
     font-size: 16px;
@@ -148,13 +148,14 @@ h1 {
     border-radius: 14px;
     font-size: 15px;
     color: #5c2f41;
-    line-height: 1.7;
+    line-height: 1.8;
 }
+
 .love-line {
-    margin-top: 14px;
+    margin-top: 18px;
     font-weight: bold;
     color: #b23a6f;
-    text-shadow: 0 0 6px rgba(178,58,111,.25);
+    text-align: center;
 }
 
 /* 🌹 FOOTER */
@@ -214,10 +215,8 @@ h1 {
 
 <body>
 
-<!-- 🦋 BUTTERFLIES -->
 <div id="butterflyLayer"></div>
 
-<!-- 🔐 LOCK -->
 <div class="lock-screen" id="lockScreen">
     <div class="lock-box">
         <h2>Private</h2>
@@ -228,11 +227,10 @@ h1 {
     </div>
 </div>
 
-<!-- 💗 CONTENT -->
 <div class="container" id="content">
     <div class="card" onclick="showHeart()">
 
-        <h1>Di-Hal Fund</h1>
+        <h1>Welcome to Dishaal Fund</h1>
         <div class="birthday">Happy 23rd Birthday baby girl 🐥</div>
 
         <div class="photo-frame">
@@ -252,9 +250,15 @@ h1 {
         <div class="divider"></div>
 
         <div class="note">
-            <strong>Why “Di-Hal”?</strong><br><br>
-            “Di” from <em>Disha</em> — direction and clarity.<br>
-            “Hal” from <em>Kushal</em> — stability and strength.
+            <strong>Why “Dishaal Fund”?</strong><br><br>
+            “Di” comes from <em>Disha</em> — direction, clarity, and the calm confidence of knowing where you’re headed.<br><br>
+            “Shaal” softens the name — it represents warmth, care, and the quiet comfort of having someone beside you.<br><br>
+            Dishaal is where direction meets togetherness.<br><br>
+            This fund isn’t about timelines or expectations.<br>
+            It’s about choosing each other, slowly and intentionally, and letting things grow at their own pace.<br><br>
+            A small beginning.<br>
+            A steady belief in us.<br>
+            And a future we allow to unfold — naturally.
             <div class="love-line">I LOVE YOU DISHA KAUNTIA ❤️</div>
         </div>
 
@@ -267,7 +271,6 @@ h1 {
     </div>
 </div>
 
-<!-- 🎵 MUSIC -->
 <audio id="bgMusic" loop>
     <source src="song.mp3" type="audio/mpeg">
 </audio>
@@ -275,12 +278,10 @@ h1 {
 <button id="muteBtn" onclick="toggleMusic()">🔊</button>
 
 <script>
-/* 🦋 CREATE BUTTERFLIES */
 function createButterflies() {
     const layer = document.getElementById("butterflyLayer");
     const cols = Math.ceil(window.innerWidth / 85);
     const rows = Math.ceil(window.innerHeight / 85);
-
     for (let y = 0; y < rows; y++) {
         for (let x = 0; x < cols; x++) {
             const b = document.createElement("div");
@@ -296,22 +297,20 @@ function createButterflies() {
 }
 window.onload = createButterflies;
 
-/* 🔐 UNLOCK */
 function unlock() {
-    if (document.getElementById("password").value === "caramelcoffee") {
+    if (password.value === "caramelcoffee") {
         lockScreen.style.display = "none";
         content.style.display = "block";
         launchConfetti();
         startMusic();
-        document.getElementById("muteBtn").style.display = "block";
+        muteBtn.style.display = "block";
     } else {
-        document.getElementById("error").style.display = "block";
+        error.style.display = "block";
     }
 }
 
-/* 🎵 MUSIC FADE-IN */
 function startMusic() {
-    const music = document.getElementById("bgMusic");
+    const music = bgMusic;
     music.volume = 0;
     music.play();
     let v = 0;
@@ -319,26 +318,15 @@ function startMusic() {
         if (v < 0.6) {
             v += 0.02;
             music.volume = v;
-        } else {
-            clearInterval(fade);
-        }
+        } else clearInterval(fade);
     }, 200);
 }
 
-/* 🔊 MUTE */
 function toggleMusic() {
-    const music = document.getElementById("bgMusic");
-    const btn = document.getElementById("muteBtn");
-    if (music.muted) {
-        music.muted = false;
-        btn.textContent = "🔊";
-    } else {
-        music.muted = true;
-        btn.textContent = "🔇";
-    }
+    bgMusic.muted = !bgMusic.muted;
+    muteBtn.textContent = bgMusic.muted ? "🔇" : "🔊";
 }
 
-/* 💗 HEART */
 function showHeart() {
     const heart = document.createElement("div");
     heart.className = "heart";
@@ -349,7 +337,6 @@ function showHeart() {
     setTimeout(() => heart.remove(), 2500);
 }
 
-/* 🎉 CONFETTI */
 function launchConfetti() {
     const colors = ["#f7a1c4", "#fbd0e3", "#f5c16c", "#e89bb5"];
     for (let i = 0; i < 80; i++) {
@@ -366,4 +353,3 @@ function launchConfetti() {
 
 </body>
 </html>
-
